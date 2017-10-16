@@ -12,7 +12,6 @@ from scipy import stats
 
 
 def biplot(score,coeff,labels=None):
-	#Inputs : Component scores also called factor scores (the transformed variable values corresponding to a particular data point), and loadings (the weight by which each standardized original variable should be multiplied to get the component score)
     xs = score[:,0]
     ys = score[:,1]
     n = coeff.shape[0]
@@ -31,14 +30,15 @@ plt.xlabel("PC{}".format(1))
 plt.ylabel("PC{}".format(2))
 plt.grid()
  
+	
 #Use Iris data to test the code
-
 iris = datasets.load_iris()
 X = iris.data
 y = iris.target
-
 X = stats.zscore(X)
+
 #Apply PCA and then use the biplot function to plot the biplot.
 pca = PCA(X) 
 biplot(pca.Y[:,0:2],pca.Wt[:,0:2])
+
 plt.show()
