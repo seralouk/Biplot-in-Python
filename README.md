@@ -4,6 +4,6 @@
 #### _The present example uses iris data to plot the biplot._
 
 _Dependencies: numpy,_
-_matplotlib,_
-_sklearn,_
-_scipy._
+_Matplotlib,_
+_Sklearn,_
+_sciPy._
