@@ -10,8 +10,7 @@ from scipy import stats
 
 def biplot(score,coeff,labels=None):
     """
-    Author: Serafeim Loukas, EPFL, serafeim.loukas(at)epfl.ch, Last modified: 10/2017 
-    
+    Author: Serafeim Loukas, EPFL, serafeim.loukas(at)epfl.ch, Last modified: 10/2017
     Input
     ------
     score: the scores (projected data onto the forst 2 components)
@@ -20,8 +19,6 @@ def biplot(score,coeff,labels=None):
     Output
     ------
     plotting of the biplot
-    
-    
     """
     xs = score[:,0]
     ys = score[:,1]
