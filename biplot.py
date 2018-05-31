@@ -1,7 +1,3 @@
-########################################################
-# Serafeim Loukas, Last modified: 10/2017 
-
-
 #Import the needed modules
 import numpy as np
 import matplotlib.pyplot as plt
@@ -13,6 +9,20 @@ from scipy import stats
 
 
 def biplot(score,coeff,labels=None):
+    """
+    Author: Serafeim Loukas, EPFL, serafeim.loukas(at)epfl.ch, Last modified: 10/2017 
+    
+    Input
+    ------
+    score: the scores (projected data onto the forst 2 components)
+    coeff: the loadings (eigenvectors)
+    
+    Output
+    ------
+    plotting of the biplot
+    
+    
+    """
     xs = score[:,0]
     ys = score[:,1]
     n = coeff.shape[0]
@@ -31,15 +41,15 @@ plt.xlabel("PC{}".format(1))
 plt.ylabel("PC{}".format(2))
 plt.grid()
  
-	
-#Use Iris data to test the code
+# Example using Iris Dataset	
+# Use Iris data to test the code
 iris = datasets.load_iris()
 X = iris.data
 y = iris.target
 X = stats.zscore(X)
 
 #Apply PCA and then use the biplot function to plot the biplot.
-pca = PCA(X) 
-biplot(pca.Y[:,0:2],pca.Wt[:,0:2])
+pca = PCA(X)
 
+biplot(pca.Y[:,0:2],pca.Wt[:,0:2])
 plt.show()
