@@ -1,25 +1,22 @@
-#Import the needed modules
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import datasets
-import matplotlib.pyplot as plt
-from matplotlib.mlab import PCA
-from scipy import stats
+from sklearn.decomposition import PCA
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
 
+iris = datasets.load_iris()
+X = iris.data
+y = iris.target
+#In general a good idea is to scale the data
+scaler = StandardScaler()
+scaler.fit(X)
+X=scaler.transform(X)    
 
+pca = PCA()
+x_new = pca.fit_transform(X)
 
-def biplot(score,coeff,labels=None):
-    """
-    Author: Serafeim Loukas, EPFL, serafeim.loukas(at)epfl.ch, Last modified: 10/2017
-    Input
-    ------
-    score: the scores (projected data onto the forst 2 components)
-    coeff: the loadings (eigenvectors)
-    
-    Output
-    ------
-    plotting of the biplot
-    """
+def myplot(score,coeff,labels=None):
     xs = score[:,0]
     ys = score[:,1]
     n = coeff.shape[0]
@@ -37,16 +34,7 @@ plt.ylim(-1,1)
 plt.xlabel("PC{}".format(1))
 plt.ylabel("PC{}".format(2))
 plt.grid()
- 
-# Example using Iris Dataset	
-# Use Iris data to test the code
-iris = datasets.load_iris()
-X = iris.data
-y = iris.target
-X = stats.zscore(X)
 
-#Apply PCA and then use the biplot function to plot the biplot.
-pca = PCA(X)
-
-biplot(pca.Y[:,0:2],pca.Wt[:,0:2])
+#Call the function. Use only the 2 PCs.
+myplot(x_new[:,0:2],np.transpose(pca.components_[0:2, :]))
 plt.show()
